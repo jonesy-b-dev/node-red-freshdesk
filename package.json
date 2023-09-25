@@ -1,0 +1,30 @@
+{
+  "name": "freshdesk-node-red-nodes",
+  "version": "0.0.1",
+  "description": "node-red nodes to call the Freshdesk API",
+  "keywords": [
+    "node-red"
+  ],
+  "author": "Jonas de Bruin",
+  "license": "Apache-2.0",
+  "node-red": {
+    "nodes": {
+      "lower-case": "lower-case.js"
+    }
+  },
+  "main": "lower-case.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonesy-b-dev/node-red-freshdesk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonesy-b-dev/node-red-freshdesk/issues"
+  },
+  "homepage": "https://github.com/jonesy-b-dev/node-red-freshdesk#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
