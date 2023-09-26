@@ -1,6 +1,6 @@
 {
   "name": "freshdesk-node-red-nodes",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "node-red nodes to call the Freshdesk API",
   "keywords": [
     "node-red"
@@ -13,9 +13,9 @@
       "freshdesk-company-by-id": "/company/get-by-id/company-by-id.js"
     }
   },
-  "engines" : { 
-    "npm" : ">=10.0.0",
-    "node" : ">=18.0.0"
+  "engines": {
+    "npm": ">=10.0.0",
+    "node": ">=18.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\""
