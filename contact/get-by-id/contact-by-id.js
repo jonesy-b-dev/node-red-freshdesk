@@ -6,9 +6,10 @@ module.exports = function (RED) {
         var node = this;
 
         // Retrieve configuration values from node
-        this.name = config.name;
-        this.apiKey = config.apiKey;
-        this.contactId = config.contactId;
+        this.name = config.name.trim();
+        this.apiKey = config.apiKey.trim();
+        this.contactId = config.contactId.trim();
+        this.domain = config.domain.trim();
 
         // Define the function to call the Freshdesk API directly
         this.getContactById = function () {
@@ -24,7 +25,7 @@ module.exports = function (RED) {
             };
 
             // Make a GET request to the Freshdesk API
-            axios.get(`https://jonesybinc.freshdesk.com/api/v2/contacts/${node.contactId}`, axiosConfig)
+            axios.get(`https://${node.domain}.freshdesk.com/api/v2/contacts/${node.contactId}`, axiosConfig)
                 .then((response) => {
                     // Handle the API response here
                     const contactData = response.data;
