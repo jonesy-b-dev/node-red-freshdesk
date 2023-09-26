@@ -1,22 +1,21 @@
 const axios = require('axios');
 
 module.exports = function (RED) {
-    function FreshdeskCompanyByIdNode(config) {
+    function FreshdeskCreateContactNode(config) {
         RED.nodes.createNode(this, config);
         var node = this;
-        this.credentials = RED.nodes.getNode(config.freshdesk);
 
         // Retrieve configuration values from node
         this.name = config.name.trim();
-        this.companyId = config.companyId.trim();
-        this.apiKey = this.credentials.apiKey;
-        this.domain = this.credentials.domain;
+        this.apiKey = config.apiKey.trim();
+        this.domain = config.domain.trim();
 
         // Define the function to call the Freshdesk API directly
-        this.getCompanyById = function () {
+        this.getCreateContact = function () {
 
             // Set up the Axios request with Basic Authentication header
-            const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
+            const apiKey = node.apiKey.trim(); // Trim leading/trailing white spaces
+            const authHeader = `Basic ${Buffer.from(apiKey + ':X').toString('base64')}`;
             const axiosConfig = {
                 headers: {
                     'Authorization': authHeader,
@@ -25,27 +24,27 @@ module.exports = function (RED) {
             };
 
             // Make a GET request to the Freshdesk API
-            axios.get(`https://${this.domain}.freshdesk.com/api/v2/companies/${node.companyId}`, axiosConfig)
+            axios.get(`https://${node.domain}.freshdesk.com/api/v2/contacts/${node.contactId}`, axiosConfig)
                 .then((response) => {
                     // Handle the API response here
-                    const companyData = response.data;
+                    const contactData = response.data;
 
-                    // You can send the companyData to the next node
-                    node.send({ payload: companyData });
+                    // You can send the contactData to the next node
+                    node.send({ payload: contactData });
                 })
                 .catch((error) => {
                     // Handle errors here
-                    node.error('Failed to fetch company data: ' + error.message);
+                    node.error('Failed to fetch contact data: ' + error.message);
                 });
         };
 
         // Handle incoming messages
         this.on('input', function (msg) {
             // Call the Freshdesk API when a message is received
-            node.getCompanyById();
+            node.getCreateContact();
         });
     }
 
-    RED.nodes.registerType('freshdesk-company-by-id', FreshdeskCompanyByIdNode);
+    RED.nodes.registerType('freshdesk-create-contact', FreshdeskCreateContactNode);
 };
 

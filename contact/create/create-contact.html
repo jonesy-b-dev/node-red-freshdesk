@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    RED.nodes.registerType('freshdesk-create-contact', {
+        category: 'Freshdesk',
+        paletteLabel: 'Create Freshdesk Contact',
+        color: '#ff7a59',
+        defaults: {
+            name: { value: '' },
+            apiKey: { value: '', required: true },
+            domain: { value: '', required: true },
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: 'font-awesome/fa-search', // Customize with your own icon
+        label: function () {
+            return this.name || 'Freshdesk Create Contact';
+        },
+    });
+</script>
+
+<script type="text/html" data-template-name="freshdesk-create-contact">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-apiKey"><i class="fa fa-key"></i> API Key</label>
+        <input type="text" id="node-input-apiKey" placeholder="Freshdesk API Key">
+    </div>
+    <div class="form-row">
+        <label for="node-input-domain"><i class="fa fa-user"></i> Domain</label>
+        <input type="text" id="node-input-domain" placeholder="domain">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="freshdesk-create-contact">
+    <p>Create a contact using the msg.payload</p>
+</script>
