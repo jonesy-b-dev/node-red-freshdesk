@@ -9,7 +9,9 @@
   "license": "Apache-2.0",
   "node-red": {
     "nodes": {
+      "freshdeskCredentials": "/config/config.js",
       "freshdesk-contact-by-id": "/contact/get-by-id/contact-by-id.js",
+      "freshdesk-create-contact": "/contact/create/create-contact.js",
       "freshdesk-company-by-id": "/company/get-by-id/company-by-id.js"
     }
   },

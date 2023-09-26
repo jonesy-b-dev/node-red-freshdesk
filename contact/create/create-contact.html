@@ -1,24 +1,23 @@
 <script type="text/javascript">
-    RED.nodes.registerType('freshdesk-company-by-id', {
+    RED.nodes.registerType('freshdesk-create-contact', {
         category: 'Freshdesk',
-        paletteLabel: 'Get Freshdesk Compant By ID',
+        paletteLabel: 'Create Freshdesk Contact',
         color: '#ff7a59',
         defaults: {
             name: { value: '' },
             apiKey: { value: '', required: true },
-            companyId: { value: '', required: true },
             domain: { value: '', required: true },
         },
         inputs: 1,
         outputs: 1,
         icon: 'font-awesome/fa-search', // Customize with your own icon
         label: function () {
-            return this.name || 'Freshdesk Company By ID';
+            return this.name || 'Freshdesk Create Contact';
         },
     });
 </script>
 
-<script type="text/html" data-template-name="freshdesk-company-by-id">
+<script type="text/html" data-template-name="freshdesk-create-contact">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -28,15 +27,11 @@
         <input type="text" id="node-input-apiKey" placeholder="Freshdesk API Key">
     </div>
     <div class="form-row">
-        <label for="node-input-companyId"><i class="fa fa-user"></i> Company ID</label>
-        <input type="text" id="node-input-companyId" placeholder="Company ID">
-    </div>
-    <div class="form-row">
         <label for="node-input-domain"><i class="fa fa-user"></i> Domain</label>
         <input type="text" id="node-input-domain" placeholder="domain">
     </div>
 </script>
 
-<script type="text/html" data-help-name="freshdesk-company-by-id">
-    <p>Gets company information by passing in the ID of the company.</p>
+<script type="text/html" data-help-name="freshdesk-create-contact">
+    <p>Create a contact using the msg.payload</p>
 </script>
