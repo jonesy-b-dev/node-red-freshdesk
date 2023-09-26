@@ -11,8 +11,6 @@ module.exports = function (RED) {
         this.contactId = config.contactId.trim();
         this.domain = this.credentials.domain;
         this.apiKey = this.credentials.apiKey;
-        node.warn(this.domain);
-        node.warn(this.apiKey);
 
         // Define the function to call the Freshdesk API directly
         this.getContactById = function () {

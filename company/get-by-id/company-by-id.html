@@ -5,9 +5,8 @@
         color: '#ff7a59',
         defaults: {
             name: { value: '' },
-            apiKey: { value: '', required: true },
+            freshdesk: {value: '', type: "freshdeskCredentials", required: true},
             companyId: { value: '', required: true },
-            domain: { value: '', required: true },
         },
         inputs: 1,
         outputs: 1,
@@ -24,16 +23,12 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-apiKey"><i class="fa fa-key"></i> API Key</label>
-        <input type="text" id="node-input-apiKey" placeholder="Freshdesk API Key">
+        <label for="node-input-freshdesk"><i class="fa fa-institution"></i> Freshdesk</label>
+        <input type="text" id="node-input-freshdesk"/>
     </div>
     <div class="form-row">
         <label for="node-input-companyId"><i class="fa fa-user"></i> Company ID</label>
         <input type="text" id="node-input-companyId" placeholder="Company ID">
-    </div>
-    <div class="form-row">
-        <label for="node-input-domain"><i class="fa fa-user"></i> Domain</label>
-        <input type="text" id="node-input-domain" placeholder="domain">
     </div>
 </script>
 
