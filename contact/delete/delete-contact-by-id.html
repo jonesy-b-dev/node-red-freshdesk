@@ -1,30 +1,30 @@
 <script type="text/javascript">
-    RED.nodes.registerType('freshdesk-company-by-id', {
+    RED.nodes.registerType('freshdesk-delete-contact-by-id', {
         category: 'Freshdesk',
-        paletteLabel: 'Get Freshdesk Compant By ID',
+        paletteLabel: 'Delete Freshdesk Contact By ID',
         color: '#ff7a59',
         defaults: {
             name: { value: '' },
             freshdesk: {value: '', type: "freshdeskCredentials", required: true},
-            companyId: { value: 'id', required: false},
+            contactId: { value: '', required: true },
         },
         inputs: 1,
         outputs: 1,
         icon: 'font-awesome/fa-search', // Customize with your own icon
         label: function () {
-            return this.name || 'Get Freshdesk Company By ID';
+            return this.name || 'Delete Freshdesk Contact By ID';
         },
         oneditprepare: function() {
-            $("#node-input-companyId").typedInput({
+            $("#node-input-contactId").typedInput({
               type:"msg",
               types:["msg"],
-              typeField: "#node-input-companyId-type"
+              typeField: "#node-input-contactId-type"
             });
         }
     });
 </script>
 
-<script type="text/html" data-template-name="freshdesk-company-by-id">
+<script type="text/html" data-template-name="freshdesk-delete-contact-by-id">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -34,12 +34,12 @@
         <input type="text" id="node-input-freshdesk"/>
     </div>
     <div class="form-row">
-        <label for="node-input-companyId"><i class="fa fa-user"></i> Company ID</label>
-        <input type="text" id="node-input-companyId">
-        <input type="hidden" id="node-input-id-companyId">
+        <label for="node-input-contactId"><i class="fa fa-user"></i> Contact ID</label>
+        <input type="text" id="node-input-contactId">
+        <input type="hidden" id="node-input-id-contactId">
     </div>
 </script>
 
-<script type="text/html" data-help-name="freshdesk-company-by-id">
-    <p>Gets company information by passing in the ID of the company. To list all contact simple don't enter a contact ID.</p>
+<script type="text/html" data-help-name="freshdesk-delete-contact-by-id">
+    <p>Deletes contact information by passing in the ID of the contact.</p>
 </script>

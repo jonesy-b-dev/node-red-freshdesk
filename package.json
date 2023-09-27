@@ -1,5 +1,5 @@
 {
-  "name": "freshdesk-node-red-nodes",
+  "name": "freshdesk-node-red-contrib",
   "version": "0.2.1",
   "description": "node-red nodes to call the Freshdesk API",
   "keywords": [
@@ -10,7 +10,9 @@
   "node-red": {
     "nodes": {
       "freshdeskCredentials": "/config/config.js",
-      "freshdesk-contact-by-id": "/contact/get-by-id/contact-by-id.js",
+      "freshdesk-get-contact-by-id": "/contact/get-by-id/get-contact-by-id.js",
+      "freshdesk-create-contact": "/contact/create/create-contact.js",
+      "freshdesk-delete-contact-by-id": "/contact/delete/delete-contact-by-id.js",
       "freshdesk-company-by-id": "/company/get-by-id/company-by-id.js"
     }
   },
