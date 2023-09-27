@@ -6,7 +6,7 @@
         defaults: {
             name: { value: '' },
             freshdesk: {value: '', type: "freshdeskCredentials", required: true},
-            companyId: { value: '', required: true },
+            companyId: { value: 'id', required: false},
         },
         inputs: 1,
         outputs: 1,
@@ -14,6 +14,13 @@
         label: function () {
             return this.name || 'Get Freshdesk Company By ID';
         },
+        oneditprepare: function() {
+            $("#node-input-companyId").typedInput({
+              type:"msg",
+              types:["msg"],
+              typeField: "#node-input-companyId-type"
+            });
+        }
     });
 </script>
 
@@ -28,10 +35,11 @@
     </div>
     <div class="form-row">
         <label for="node-input-companyId"><i class="fa fa-user"></i> Company ID</label>
-        <input type="text" id="node-input-companyId" placeholder="Company ID">
+        <input type="text" id="node-input-companyId">
+        <input type="hidden" id="node-input-id-companyId">
     </div>
 </script>
 
 <script type="text/html" data-help-name="freshdesk-company-by-id">
-    <p>Gets company information by passing in the ID of the company.</p>
+    <p>Gets company information by passing in the ID of the company. To list all contact simple don't enter a contact ID.</p>
 </script>
