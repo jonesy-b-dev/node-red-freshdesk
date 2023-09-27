@@ -1,23 +1,30 @@
 <script type="text/javascript">
-    RED.nodes.registerType('freshdesk-contact-by-id', {
+    RED.nodes.registerType('freshdesk-get-contact-by-id', {
         category: 'Freshdesk',
         paletteLabel: 'Get Freshdesk Contact By ID',
         color: '#ff7a59',
         defaults: {
             name: { value: '' },
             freshdesk: {value: '', type: "freshdeskCredentials", required: true},
-            contactId: { value: '', required: false },
+            contactId: { value: 'id', required: false },
         },
         inputs: 1,
         outputs: 1,
         icon: 'font-awesome/fa-search', // Customize with your own icon
         label: function () {
-            return this.name || 'Freshdesk Contact By ID';
+            return this.name || 'Get Freshdesk Contact By ID';
         },
+        oneditprepare: function() {
+            $("#node-input-contactId").typedInput({
+              type:"msg",
+              types:["msg"],
+              typeField: "#node-input-contactId-type"
+            });
+        }
     });
 </script>
 
-<script type="text/html" data-template-name="freshdesk-contact-by-id">
+<script type="text/html" data-template-name="freshdesk-get-contact-by-id">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -28,10 +35,11 @@
     </div>
     <div class="form-row">
         <label for="node-input-contactId"><i class="fa fa-user"></i> Contact ID</label>
-        <input type="text" id="node-input-contactId" placeholder="Contact ID">
+        <input type="text" id="node-input-contactId">
+        <input type="hidden" id="node-input-id-contactId">
     </div>
 </script>
 
-<script type="text/html" data-help-name="freshdesk-contact-by-id">
+<script type="text/html" data-help-name="freshdesk-get-contact-by-id">
     <p>Gets contact information by passing in the ID of the contact. To list all contact simple don't enter a contact ID.</p>
 </script>

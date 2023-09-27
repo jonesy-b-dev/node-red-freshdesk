@@ -7,13 +7,13 @@ module.exports = function (RED) {
         this.credentials = RED.nodes.getNode(config.freshdesk);
 
         // Retrieve configuration values from node
-        this.name = config.name.trim();
-        this.contactId = config.contactId.trim();
+        //this.contactId = config.contactId.trim();
         this.domain = this.credentials.domain;
         this.apiKey = this.credentials.apiKey;
 
         // Define the function to call the Freshdesk API directly
-        this.getContactById = function () {
+        this.getContactById = function (msg) {
+            this.contactId = msg.id;
 
             // Set up the Axios request with Basic Authentication header
             const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
@@ -25,10 +25,10 @@ module.exports = function (RED) {
             };
 
             // Make a GET request to the Freshdesk API
-            axios.get(`https://${this.domain}.freshdesk.com/api/v2/contacts/${node.contactId}`, axiosConfig)
+            axios.get(`https://${this.domain}.freshdesk.com/api/v2/contacts/${this.contactId}`, axiosConfig)
                 .then((response) => {
                     // You can send the contactData to the next node
-                    node.send({ payload: "Deleted contact." });
+                    node.send({ payload: response.data });
                 })
                 .catch((error) => {
                     // Handle errors here
@@ -39,10 +39,10 @@ module.exports = function (RED) {
         // Handle incoming messages
         this.on('input', function (msg) {
             // Call the Freshdesk API when a message is received
-            node.getContactById();
+            node.getContactById(msg);
         });
     }
 
-    RED.nodes.registerType('freshdesk-contact-by-id', FreshdeskContactByIdNode);
+    RED.nodes.registerType('freshdesk-get-contact-by-id', FreshdeskContactByIdNode);
 };
 

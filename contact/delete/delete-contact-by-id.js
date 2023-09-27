@@ -29,11 +29,11 @@ module.exports = function (RED) {
                     const deleteData = response.data;
 
                     // You can send the contactData to the next node
-                    node.send({ payload: deleteData});
+                    node.send({ payload: "Deleted contact"});
                 })
                 .catch((error) => {
                     // Handle errors here
-                    node.error('Failed to delete contact data: ' + error.message);
+                    node.error('Failed to delete contact data: ' + error.message + ' Maybe the contact does not exist?');
                 });
         };
 

@@ -27,10 +27,9 @@ module.exports = function (RED) {
             axios.get(`https://${this.domain}.freshdesk.com/api/v2/companies/${node.companyId}`, axiosConfig)
                 .then((response) => {
                     // Handle the API response here
-                    const companyData = response.data;
 
                     // You can send the companyData to the next node
-                    node.send({ payload: companyData });
+                    node.send({ payload: response.data });
                 })
                 .catch((error) => {
                     // Handle errors here
