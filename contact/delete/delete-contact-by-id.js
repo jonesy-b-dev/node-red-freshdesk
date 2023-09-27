@@ -12,7 +12,8 @@ module.exports = function (RED) {
         this.apiKey = this.credentials.apiKey;
 
         // Define the function to call the Freshdesk API directly
-        this.deleteContactById = function () {
+        this.deleteContactById = function (msg) {
+            this.contactId = msg.id;
             // Set up the Axios request with Basic Authentication header
             const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
             const axiosConfig = {
@@ -23,7 +24,7 @@ module.exports = function (RED) {
             };
 
             // Make a GET request to the Freshdesk API
-            axios.delete(`https://${this.domain}.freshdesk.com/api/v2/contacts/${node.contactId}`, axiosConfig)
+            axios.delete(`https://${this.domain}.freshdesk.com/api/v2/contacts/${this.contactId}`, axiosConfig)
                 .then((response) => {
                     // Handle the API response here
                     const deleteData = response.data;
@@ -40,7 +41,7 @@ module.exports = function (RED) {
         // Handle incoming messages
         this.on('input', function (msg) {
             // Call the Freshdesk API when a message is received
-            node.deleteContactById();
+            node.deleteContactById(msg);
         });
     }
     RED.nodes.registerType('freshdesk-delete-contact-by-id', FreshdeskDeleteContactByIdNode);

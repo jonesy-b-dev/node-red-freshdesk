@@ -14,6 +14,13 @@
         label: function () {
             return this.name || 'Delete Freshdesk Contact By ID';
         },
+        oneditprepare: function() {
+            $("#node-input-contactId").typedInput({
+              type:"msg",
+              types:["msg"],
+              typeField: "#node-input-contactId-type"
+            });
+        }
     });
 </script>
 
@@ -28,7 +35,8 @@
     </div>
     <div class="form-row">
         <label for="node-input-contactId"><i class="fa fa-user"></i> Contact ID</label>
-        <input type="text" id="node-input-contactId" placeholder="Contact ID">
+        <input type="text" id="node-input-contactId">
+        <input type="hidden" id="node-input-id-contactId">
     </div>
 </script>
 
