@@ -7,7 +7,6 @@ module.exports = function (RED) {
         this.credentials = RED.nodes.getNode(config.freshdesk);
 
         // Retrieve configuration values from node
-        this.name = config.name.trim();
         this.companyId = config.companyId.trim();
         this.apiKey = this.credentials.apiKey;
         this.domain = this.credentials.domain;

@@ -7,13 +7,15 @@ module.exports = function (RED) {
         this.credentials = RED.nodes.getNode(config.freshdesk);
 
         // Retrieve configuration values from node
-        this.name = config.name.trim();
         this.domain = this.credentials.domain;
         this.apiKey = this.credentials.apiKey;
         this.inputData = config.inputData; // This should be a string like "payload.contactData"
 
         // Define the function to call the Freshdesk API directly
         this.createContact = function (msg) {
+            // Access the nested property using the inputData string
+            let contactData = msg.payload;
+
             // Set up the Axios request with Basic Authentication header
             const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
             const axiosConfig = {
@@ -23,11 +25,6 @@ module.exports = function (RED) {
                 },
             };
 
-            // Access the nested property using the inputData string
-            const propertyNames = this.inputData.split('.');
-            node.warn(propertyNames);
-            let contactData = msg.payload;
-            node.warn(contactData);
             //check if contactData includes a name and email
             if (contactData.hasOwnProperty('name') && contactData.hasOwnProperty('email')) {
 
