@@ -14,6 +14,8 @@ https://github.com/jonesy-b-dev/node-red-freshdesk/issues
 ## Supported API endpoints
 * Get contact by ID
 * Get company by ID
+* Create contact
+* Delete contact
 
 ## Next up
 * CRUD for contacts
