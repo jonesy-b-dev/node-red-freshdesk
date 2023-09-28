@@ -12,7 +12,7 @@ module.exports = function (RED) {
         this.apiKey = this.credentials.apiKey;
 
         // Define the function to call the Freshdesk API directly
-        this.deleteContactById = function (msg) {
+        this.deleteCompanyById = function (msg) {
             this.companyId = msg.id;
             // Set up the Axios request with Basic Authentication header
             const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
@@ -38,7 +38,7 @@ module.exports = function (RED) {
         // Handle incoming messages
         this.on('input', function (msg) {
             // Call the Freshdesk API when a message is received
-            node.deleteContactById(msg);
+            node.deleteCompanyById(msg);
         });
     }
     RED.nodes.registerType('freshdesk-delete-company-by-id', FreshdeskDeleteCompanyByIdNode);
