@@ -10,7 +10,7 @@
         },
         inputs: 1,
         outputs: 1,
-        icon: 'font-awesome/fa-search', // Customize with your own icon
+        icon: 'font-awesome/fa-search',
         label: function () {
             return this.name || 'Get Freshdesk Company By ID';
         },
@@ -41,5 +41,10 @@
 </script>
 
 <script type="text/html" data-help-name="freshdesk-company-by-id">
-    <p>Gets company information by passing in the ID of the company. To list all contact simple don't enter a contact ID.</p>
+    <h2>How to use this node</h2>
+    <p>Gets company information by passing in the ID of the company and returns the result in msg.payload. To list all contact simple don't enter a contact ID.</p>
+    <p>The Freshdesk field asks for your Freshdesk account. For more info on this please check the docs in the config node.</p>
+    <p>In the company ID field you can specify the msg property where the ID is stored. Please only have the ID in the property and nothing else. Otherwise it will result in an error.</p>
+    <p>To get more information on what you can input how how to format please visit the official Freshdesk docs. Note, since the Freshdesk docs website is not really good it can send you to the wrong place in the docs.</p>
+    <p><a href="https://developers.freshdesk.com/api/#view_company" target="_blank">https://developers.freshdesk.com/api/#view_company</a></p>
 </script>
