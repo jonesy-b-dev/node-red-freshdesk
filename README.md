@@ -25,8 +25,11 @@ https://github.com/jonesy-b-dev/node-red-freshdesk/issues
 ### Company
 * Get company by ID
 * Create contact
+* Update company by ID
 * Delete company by ID
 
 ## Next up
-* Update contact by ID
-* Update company by ID
+* Update the documentation of the nodes
+* Update the documentation of the code
+* I don't know yet what nodes I will create now but feel free to request nodes on GitHub issues linked above.
+* Currently I created all the nodes I need for now. I will update this when I need more nodes or feel like adding more nodes. I think I will do this since I quite enjoyed making it.

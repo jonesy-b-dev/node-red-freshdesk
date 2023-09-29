@@ -1,0 +1,56 @@
+<script type="text/javascript">
+    RED.nodes.registerType('freshdesk-update-company-by-id', {
+        category: 'Freshdesk',
+        paletteLabel: 'Update Freshdesk Company by ID',
+        color: '#ff7a59',
+        defaults: {
+            name: { value: '' },
+            freshdesk: { value: '', type: "freshdeskCredentials", required: true },
+            companyId: { value: 'id', required: false },
+            inputData: { value: 'payload', required: true },
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: 'font-awesome/fa-search',
+        label: function () {
+            return this.name || 'Update Freshdesk Company by ID';
+        },
+        oneditprepare: function() {
+            $("#node-input-inputData").typedInput({
+              type:"msg",
+              types:["msg"],
+              typeField: "#node-input-inputData-type"
+            })
+            $("#node-input-companyId").typedInput({
+              type:"msg",
+              types:["msg"],
+              typeField: "#node-input-inputData-type"
+            });
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="freshdesk-update-company-by-id">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-freshdesk"><i class="fa fa-institution"></i> Freshdesk</label>
+        <input type="text" id="node-input-freshdesk"/>
+    </div>
+    <div class="form-row">
+        <label for="node-input-companyId"><i class="fa fa-user"></i> Company ID</label>
+        <input type="text" id="node-input-companyId">
+        <input type="hidden" id="node-input-id-companyId">
+    </div>
+    <div class="form-row">
+        <label for="node-input-inputData"><i class="fa fa-sign-in"></i> Data</label>
+        <input type="text" id="node-input-inputData" value="msg.payload">
+        <input type="hidden" id="node-input-id-inputData">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="freshdesk-update-company-by-id">
+    <p>Updates a company with the data provided. </p>
+</script>

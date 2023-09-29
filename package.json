@@ -16,6 +16,7 @@
       "freshdesk-delete-contact-by-id": "/contact/delete/delete-contact-by-id.js",
       "freshdesk-company-by-id": "/company/get-by-id/company-by-id.js",
       "freshdesk-create-company": "/company/create/create-company.js",
+      "freshdesk-update-company-by-id": "/company/update/update-company-by-id.js",
       "freshdesk-delete-company-by-id": "/company/delete/delete-company-by-id.js"
     }
   },
