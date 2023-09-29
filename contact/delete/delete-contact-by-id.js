@@ -14,7 +14,7 @@ module.exports = function (RED) {
         // Define the function to call the Freshdesk API directly
         this.deleteContactById = function (msg) {
             this.contactId = msg.id;
-            // Set up the Axios request with Basic Authentication header
+            // Set up the Axios request with Basic Authentication header and config
             const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
             const axiosConfig = {
                 headers: {
@@ -23,14 +23,14 @@ module.exports = function (RED) {
                 },
             };
 
-            // Make a GET request to the Freshdesk API
+            // Make a DELETE request to the Freshdesk API
             axios.delete(`https://${this.domain}.freshdesk.com/api/v2/contacts/${this.contactId}`, axiosConfig)
                 .then((response) => {
-                    // Send the contactData to the next node
+                    // Send the response to the next node
                     node.send({ payload: "Deleted contact with ID " + this.contactId + "."});
                 })
                 .catch((error) => {
-                    // Handle errors here
+                    // Handle errors 
                     node.error('Failed to delete contact data: ' + error.message + ' Maybe the contact does not exist?');
                 });
         };

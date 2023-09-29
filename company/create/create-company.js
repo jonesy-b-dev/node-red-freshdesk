@@ -13,10 +13,10 @@ module.exports = function (RED) {
 
         // Define the function to call the Freshdesk API directly
         this.createCompany = function (msg) {
-            // Access the nested property using the inputData string
+            // Access the data in the msg object
             let companyData = msg.payload;
 
-            // Set up the Axios request with Basic Authentication header
+            // Set up the Axios request with Basic Authentication header and config
             const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
             const axiosConfig = {
                 headers: {
@@ -25,19 +25,16 @@ module.exports = function (RED) {
                 },
             };
 
-            //check if companyData includes a name and email
+            //Check if companyData includes a name
             if (companyData.hasOwnProperty('name')) {
                 // Make a POST request to create a contact in Freshdesk
                 axios.post(`https://${this.domain}.freshdesk.com/api/v2/companies`, companyData, axiosConfig)
                     .then((response) => {
-                        // Handle the API response here
-                        const createdContact = response.data;
-
-                        // You can send the createdContact to the next node
-                        node.send({ payload: createdContact });
+                        // Send the createdContact to the next node
+                        node.send({ payload: response.data });
                     })
                     .catch((error) => {
-                        // Handle errors here
+                        // Handle errors
                         node.error('Failed to create company: ' + error.message);
                 });
             } 
@@ -48,7 +45,7 @@ module.exports = function (RED) {
 
         // Handle incoming messages
         this.on('input', function (msg) {
-            // Call the function to create a contact when a message is received
+            // Call the function to create a company when a message is received
             node.createCompany(msg);
         });
     }

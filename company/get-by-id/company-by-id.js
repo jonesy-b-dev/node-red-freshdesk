@@ -14,12 +14,12 @@ module.exports = function (RED) {
         this.getCompanyById = function (msg) {
             this.companyId = msg.id;
 
-            // Set up the Axios request with Basic Authentication header
+            // Set up the Axios request with Basic Authentication header and config
             const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
             const axiosConfig = {
                 headers: {
                     'Authorization': authHeader,
-                    //'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
             };
 
@@ -30,7 +30,7 @@ module.exports = function (RED) {
                     node.send({ payload: response.data });
                 })
                 .catch((error) => {
-                    // Handle errors here
+                    // Handle errors
                     node.error('Failed to fetch company data: ' + error.message);
                 });
         };
