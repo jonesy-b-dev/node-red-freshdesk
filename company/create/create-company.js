@@ -26,24 +26,23 @@ module.exports = function (RED) {
             };
 
             //check if companyData includes a name and email
-            if (companyData.hasOwnProperty('name') && companyData.hasOwnProperty('email')) {
+            if (companyData.hasOwnProperty('name')) {
+                // Make a POST request to create a contact in Freshdesk
+                axios.post(`https://${this.domain}.freshdesk.com/api/v2/companies`, companyData, axiosConfig)
+                    .then((response) => {
+                        // Handle the API response here
+                        const createdContact = response.data;
 
-            // Make a POST request to create a contact in Freshdesk
-            axios.post(`https://${this.domain}.freshdesk.com/api/v2/companies`, companyData, axiosConfig)
-                .then((response) => {
-                    // Handle the API response here
-                    const createdContact = response.data;
-
-                    // You can send the createdContact to the next node
-                    node.send({ payload: createdContact });
-                })
-                .catch((error) => {
-                    // Handle errors here
-                    node.error('Failed to create company: ' + error.message);
+                        // You can send the createdContact to the next node
+                        node.send({ payload: createdContact });
+                    })
+                    .catch((error) => {
+                        // Handle errors here
+                        node.error('Failed to create company: ' + error.message);
                 });
             } 
             else {
-                node.error('Contact data must at least include a name and email to satisfy Freshdesk requirements');
+                node.error('Contact data must at least include a unique name to satisfy Freshdesk requirements. To know how to format your data, please refer to the Freshdesk API documentation: https://developers.freshdesk.com/api/#create_company');
             }
         };
 

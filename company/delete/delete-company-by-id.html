@@ -1,12 +1,12 @@
 <script type="text/javascript">
     RED.nodes.registerType('freshdesk-delete-company-by-id', {
         category: 'Freshdesk',
-        paletteLabel: 'Delete Freshdesk Contact By ID',
+        paletteLabel: 'Delete Freshdesk Company By ID',
         color: '#ff7a59',
         defaults: {
             name: { value: '' },
             freshdesk: {value: '', type: "freshdeskCredentials", required: true},
-            contactId: { value: '', required: true },
+            companyId: { value: 'id', required: true },
         },
         inputs: 1,
         outputs: 1,
@@ -41,5 +41,5 @@
 </script>
 
 <script type="text/html" data-help-name="freshdesk-delete-company-by-id">
-    <p>Deletes company information by passing in the ID of the contact.</p>
+    <p>Deletes company information by passing in the ID of the contact. WARNING: This will permanently remove a company without a warning. Contacts of those companies will NOT be removed. </p>
 </script>

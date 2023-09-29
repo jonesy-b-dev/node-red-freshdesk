@@ -27,11 +27,11 @@ module.exports = function (RED) {
             axios.delete(`https://${this.domain}.freshdesk.com/api/v2/companies/${this.companyId}`, axiosConfig)
                 .then((response) => {
                     // Send the companyData to the next node
-                    node.send({ payload: "Deleted contact"});
+                    node.send({ payload: "Deleted company with ID " + this.companyId + "."});
                 })
                 .catch((error) => {
                     // Handle errors here
-                    node.error('Failed to delete contact data: ' + error.message + ' Maybe the contact does not exist?');
+                    node.error('Failed to delete company data: ' + error.message + ' Maybe the company does not exist?');
                 });
         };
 
