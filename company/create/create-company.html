@@ -1,7 +1,7 @@
 <script type="text/javascript">
-    RED.nodes.registerType('freshdesk-create-contact', {
+    RED.nodes.registerType('freshdesk-create-company', {
         category: 'Freshdesk',
-        paletteLabel: 'Create Freshdesk Contact',
+        paletteLabel: 'Create Freshdesk Company',
         color: '#ff7a59',
         defaults: {
             name: { value: '' },
@@ -12,7 +12,7 @@
         outputs: 1,
         icon: 'font-awesome/fa-search', // Customize with your own icon
         label: function () {
-            return this.name || 'Create Freshdesk Contact';
+            return this.name || 'Create Freshdesk Company';
         },
         oneditprepare: function() {
             $("#node-input-inputData").typedInput({
@@ -24,7 +24,7 @@
     });
 </script>
 
-<script type="text/html" data-template-name="freshdesk-create-contact">
+<script type="text/html" data-template-name="freshdesk-create-company">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -40,6 +40,6 @@
     </div>
 </script>
 
-<script type="text/html" data-help-name="freshdesk-create-contact">
-    <p>Creates a contact with the data provided.</p>
+<script type="text/html" data-help-name="freshdesk-create-company">
+    <p>Creates a company with the data provided.</p>
 </script>

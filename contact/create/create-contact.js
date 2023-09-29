@@ -43,7 +43,7 @@ module.exports = function (RED) {
                 });
             } 
             else {
-                node.error('Contact data must at least include a name and email to satisfy Freshdesk requirements');
+                node.error('Contact data must at least include a name and email to satisfy Freshdesk requirements. To know how to format your data, please refer to the Freshdesk API documentation: https://developers.freshdesk.com/api/#create_contact');
             }
         };
 

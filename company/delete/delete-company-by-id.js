@@ -12,7 +12,7 @@ module.exports = function (RED) {
         this.apiKey = this.credentials.apiKey;
 
         // Define the function to call the Freshdesk API directly
-        this.deleteContactById = function (msg) {
+        this.deleteCompanyById = function (msg) {
             this.companyId = msg.id;
             // Set up the Axios request with Basic Authentication header
             const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
@@ -27,18 +27,18 @@ module.exports = function (RED) {
             axios.delete(`https://${this.domain}.freshdesk.com/api/v2/companies/${this.companyId}`, axiosConfig)
                 .then((response) => {
                     // Send the companyData to the next node
-                    node.send({ payload: "Deleted contact"});
+                    node.send({ payload: "Deleted company with ID " + this.companyId + "."});
                 })
                 .catch((error) => {
                     // Handle errors here
-                    node.error('Failed to delete contact data: ' + error.message + ' Maybe the contact does not exist?');
+                    node.error('Failed to delete company data: ' + error.message + ' Maybe the company does not exist?');
                 });
         };
 
         // Handle incoming messages
         this.on('input', function (msg) {
             // Call the Freshdesk API when a message is received
-            node.deleteContactById(msg);
+            node.deleteCompanyById(msg);
         });
     }
     RED.nodes.registerType('freshdesk-delete-company-by-id', FreshdeskDeleteCompanyByIdNode);

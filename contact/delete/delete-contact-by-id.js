@@ -27,7 +27,7 @@ module.exports = function (RED) {
             axios.delete(`https://${this.domain}.freshdesk.com/api/v2/contacts/${this.contactId}`, axiosConfig)
                 .then((response) => {
                     // Send the contactData to the next node
-                    node.send({ payload: "Deleted contact"});
+                    node.send({ payload: "Deleted contact with ID " + this.contactId + "."});
                 })
                 .catch((error) => {
                     // Handle errors here

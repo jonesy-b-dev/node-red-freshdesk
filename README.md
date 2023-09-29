@@ -8,15 +8,24 @@ Though I might update this more.
 
 Any support I will appreciate greatly and you can support the project on github
 
+## Warnings
+* The delete company node will permanently delete a company without warnings. This can be dangerous. Any contacts associated with the company will NOT be removed.
+
 ## Report bugs
 https://github.com/jonesy-b-dev/node-red-freshdesk/issues
 
 ## Supported API endpoints
+
+### Contact
 * Get contact by ID
+* Create company
+* Delete contact by ID
+
+### Company
 * Get company by ID
 * Create contact
-* Delete contact
+* Delete company by ID
 
 ## Next up
-* CRUD for contacts
-* CRUD for companies
+* Update contact by ID
+* Update company by ID
