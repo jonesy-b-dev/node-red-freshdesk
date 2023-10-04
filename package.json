@@ -1,6 +1,6 @@
 {
   "name": "freshdesk-node-red-contrib",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "node-red nodes to call the Freshdesk API",
   "keywords": [
     "node-red"
@@ -21,7 +21,7 @@
       "freshdesk-ticket-by-id": "/ticket/get-by-id/get-ticket-by-id.js",
       "freshdesk-delete-ticket-by-id": "/ticket/delete/delete-ticket-by-id.js"
     },
-    "version" : ">=3.0.0"
+    "version": ">=3.0.0"
   },
   "engines": {
     "npm": ">=10.0.0",
