@@ -37,6 +37,10 @@ https://github.com/jonesy-b-dev/node-red-freshdesk/issues
 * Update company by ID
 * Delete company by ID
 
+## Ticket
+* Get ticket by ID
+* Delete ticket by ID
+
 ## Next up
 * Ticket CRUD
 * I don't know yet what nodes I will create now but feel free to request nodes on GitHub issues linked above.
