@@ -39,9 +39,11 @@ https://github.com/jonesy-b-dev/node-red-freshdesk/issues
 
 ## Ticket
 * Get ticket by ID
+* Create contact
+* Update contact
 * Delete ticket by ID
 
 ## Next up
-* Ticket CRUD
+* Extended error log
 * I don't know yet what nodes I will create now but feel free to request nodes on GitHub issues linked above.
 * Currently I created all the nodes I need for now. I will update this when I need more nodes or feel like adding more nodes. I think I will do this since I quite enjoyed making it.
