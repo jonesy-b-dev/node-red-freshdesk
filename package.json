@@ -1,6 +1,6 @@
 {
   "name": "freshdesk-node-red-contrib",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "node-red nodes to call the Freshdesk API",
   "keywords": [
     "node-red"
