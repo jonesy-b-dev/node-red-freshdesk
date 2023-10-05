@@ -1,7 +1,7 @@
 <script type="text/javascript">
     RED.nodes.registerType('freshdesk-create-ticket', {
         category: 'Freshdesk',
-        paletteLabel: 'Create Freshdesk Contact',
+        paletteLabel: 'Create Freshdesk Ticket',
         color: '#ff7a59',
         defaults: {
             name: { value: '' },
@@ -12,7 +12,7 @@
         outputs: 1,
         icon: 'font-awesome/fa-search',
         label: function () {
-            return this.name || 'Create Freshdesk Contact';
+            return this.name || 'Create Freshdesk Ticket';
         },
         oneditprepare: function() {
             $("#node-input-inputData").typedInput({

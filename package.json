@@ -19,6 +19,7 @@
       "freshdesk-update-company-by-id": "/company/update/update-company-by-id.js",
       "freshdesk-delete-company-by-id": "/company/delete/delete-company-by-id.js",
       "freshdesk-ticket-by-id": "/ticket/get-by-id/get-ticket-by-id.js",
+      "freshdesk-create-ticket": "/ticket/create/create-ticket.js",
       "freshdesk-delete-ticket-by-id": "/ticket/delete/delete-ticket-by-id.js"
     },
     "version" : ">=3.0.0"
