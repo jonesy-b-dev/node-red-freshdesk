@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 module.exports = function (RED) {
-    function FreshdeskUpdateContactByIDNode(config) {
+    function FreshdeskUpdateTicketByIDNode(config) {
         RED.nodes.createNode(this, config);
         var node = this;
         this.credentials = RED.nodes.getNode(config.freshdesk);
@@ -12,10 +12,10 @@ module.exports = function (RED) {
         this.inputData = config.inputData; 
 
         // Define the function to call the Freshdesk API directly
-        this.updateContact = function (msg) {
+        this.updateTicket = function (msg) {
             // Access the data in the msg object
-            let contactData = msg.payload;
-            let contactId = msg.id;
+            let ticketData = msg.payload;
+            let ticketId = msg.id;
 
             // Set up the Axios request with Basic Authentication header and config
             const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
@@ -27,7 +27,7 @@ module.exports = function (RED) {
             };
 
             // Make a POST request to create a contact in Freshdesk
-            axios.put(`https://${this.domain}.freshdesk.com/api/v2/contacts/${contactId}`, contactData, axiosConfig)
+            axios.put(`https://${this.domain}.freshdesk.com/api/v2/tickets/${ticketId}`, ticketData, axiosConfig)
                 .then((response) => {
                     // Send the response to the next node
                     node.send({ payload:  response.data });
@@ -35,20 +35,20 @@ module.exports = function (RED) {
                 .catch((error) => {
                     // Handle errors here and log the response
                     if (error.response) {
-                        node.error('Failed to update contact: ' + error.response.status + ' ' + error.response.statusText);
+                        node.error('Failed to update ticket: ' + error.response.status + ' ' + error.response.statusText);
                         node.warn('Response data: ' + JSON.stringify(error.response.data));
                     } else {
-                        node.error('Failed to update contact: ' + error.message);
+                        node.error('Failed to update ticket: ' + error.message);
                     }
                 });
-        };
+            };
 
         // Handle incoming messages
         this.on('input', function (msg) {
-            // Call the function to create a contact when a message is received
-            node.updateContact(msg);
+            // Call the function to create a ticket when a message is received
+            node.updateTicket(msg);
         });
     }
 
-    RED.nodes.registerType('freshdesk-update-contact-by-id', FreshdeskUpdateContactByIDNode);
+    RED.nodes.registerType('freshdesk-update-ticket-by-id', FreshdeskUpdateTicketByIDNode);
 };
