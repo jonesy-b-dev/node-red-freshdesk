@@ -30,8 +30,23 @@ module.exports = function (RED) {
                     node.send({ payload: "Deleted company with ID " + this.companyId + "."});
                 })
                 .catch((error) => {
-                    // Handle errors 
-                    node.error('Failed to delete company data: ' + error.message + ' Maybe the company does not exist?');
+                    if (error.response) {
+                        // HTTP response was received, but it's an error (non-2xx status code)
+                        if (error.response.status === 404) {
+                            // Handle the specific case of a 404 Not Found error
+                            node.error('Company not found. Failed to delete company data. HTTP Status: ' + error.response.status);
+                        } else {
+                            // Handle other non-404 errors
+                            node.error('Failed to delete company data. HTTP Status: ' + error.response.status);
+                        }
+                        node.warn('Response data: ' + JSON.stringify(error.response.data));
+                    } else if (error.request) {
+                        // Request was made, but no response was received
+                        node.error('Failed to make the DELETE request. No response received.');
+                    } else {
+                        // Something else went wrong
+                        node.error('An error occurred during the DELETE request: ' + error.message);
+                    }
                 });
         };
 

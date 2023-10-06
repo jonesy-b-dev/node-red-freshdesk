@@ -37,7 +37,7 @@ https://github.com/jonesy-b-dev/node-red-freshdesk/issues
 * Update company by ID
 * Delete company by ID
 
-## Ticket
+### Ticket
 * Get ticket by ID
 * Create contact
 * Update contact
