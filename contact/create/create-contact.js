@@ -37,8 +37,17 @@ module.exports = function (RED) {
                         node.send({ payload: createdContact });
                     })
                     .catch((error) => {
-                        // Handle errors here
-                        node.error('Failed to create contact: ' + error.message);
+                        if (error.response) {
+                            // HTTP response was received, but it's an error (non-2xx status code)
+                            node.error('Failed to create contact. HTTP Status: ' + error.response.status + ' ' + error.response.statusText);
+                            node.warn('Response data: ' + JSON.stringify(error.response.data));
+                        } else if (error.request) {
+                            // Request was made, but no response was received
+                            node.error('Failed to make the POST request. No response received.');
+                        } else {
+                            // Something else went wrong
+                            node.error('An error occurredduring the POST request: ' + error.message);
+                        }
                     });
             } 
             else {

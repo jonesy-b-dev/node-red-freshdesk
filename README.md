@@ -20,6 +20,11 @@ npm install node-red-freshdesk
 ## Warnings
 * The delete company node will permanently delete a company without warnings. This can be dangerous. Any contacts associated with the company will NOT be removed.
 
+## Whats new in v0.8.2
+* Fixed 'ben'being the default value for the api key
+
+For full log of the updates please check the GitHub
+
 ## Report bugs
 https://github.com/jonesy-b-dev/node-red-freshdesk/issues
 
@@ -37,13 +42,12 @@ https://github.com/jonesy-b-dev/node-red-freshdesk/issues
 * Update company by ID
 * Delete company by ID
 
-## Ticket
+### Ticket
 * Get ticket by ID
 * Create contact
 * Update contact
 * Delete ticket by ID
 
 ## Next up
-* Extended error log
 * I don't know yet what nodes I will create now but feel free to request nodes on GitHub issues linked above.
 * Currently I created all the nodes I need for now. I will update this when I need more nodes or feel like adding more nodes. I think I will do this since I quite enjoyed making it.

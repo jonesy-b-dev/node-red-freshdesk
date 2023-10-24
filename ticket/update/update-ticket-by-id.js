@@ -33,12 +33,21 @@ module.exports = function (RED) {
                     node.send({ payload:  response.data });
                 })
                 .catch((error) => {
-                    // Handle errors here and log the response
                     if (error.response) {
-                        node.error('Failed to update ticket: ' + error.response.status + ' ' + error.response.statusText);
+                        // Handle the specific case of a 404 Not Found error
+                        if (error.response.status === 404) {
+                            node.error('Ticket not found. Failed to get ticket data. HTTP Status: ' + error.response.status);
+                        } else {
+                            // Handle other non-404 errors
+                            node.error('Failed to get ticket data. HTTP Status: ' + error.response.status);
+                        }
                         node.warn('Response data: ' + JSON.stringify(error.response.data));
+                    } else if (error.request) {
+                        // Request was made, but no response was received
+                        node.error('Failed to make the PUT request. No response received.');
                     } else {
-                        node.error('Failed to update ticket: ' + error.message);
+                        // Something else went wrong
+                        node.error('An error occurred during the PUT request: ' + error.message);
                     }
                 });
             };

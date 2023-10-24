@@ -32,8 +32,22 @@ module.exports = function (RED) {
                     node.send({ payload: response.data });
                 })
                 .catch((error) => {
-                    // Handle errors
-                    node.error('Failed to fetch contact data: ' + error.message);
+                    if (error.response) {
+                        // Handle the specific case of a 404 Not Found error
+                        if (error.response.status === 404) {
+                            node.error('Contact not found. Failed to get contact data. HTTP Status: ' + error.response.status);
+                        } else {
+                            // Handle other non-404 errors
+                            node.error('Failed to get contact data. HTTP Status: ' + error.response.status);
+                        }
+                        node.warn('Response data: ' + JSON.stringify(error.response.data));
+                    } else if (error.request) {
+                        // Request was made, but no response was received
+                        node.error('Failed to make the GET request. No response received.');
+                    } else {
+                        // Something else went wrong
+                        node.error('An error occurred during the GET request: ' + error.message);
+                    }
                 });
         };
 

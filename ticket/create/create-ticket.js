@@ -33,11 +33,20 @@ module.exports = function (RED) {
                         // Send the createdContact to the next node
                         node.send({ payload: response.data });
                     })
-                    .catch((error, response) => {
-                        // Handle errors here
-                        node.error('Failed to create ticket: ' + error.message);
+                    .catch((error) => {
+                        if (error.response) {
+                            // HTTP response was received, but it's an error (non-2xx status code)
+                            node.error('Failed to create ticket. HTTP Status: ' + error.response.status + ' ' + error.response.statusText);
+                            node.warn('Response data: ' + JSON.stringify(error.response.data));
+                        } else if (error.request) {
+                            // Request was made, but no response was received
+                            node.error('Failed to make the POST request. No response received.');
+                        } else {
+                            // Something else went wrong
+                            node.error('An error occurredduring the POST request: ' + error.message);
+                        }
                     });
-            } 
+                } 
             else {
                 node.error('Ticket data must at least include one of the following fields: "requester_id", "email", "favebook_id", "phone", "twitter_id", "unique_external_id" to satisfy Freshdesk requirements. To know how to format your data, please refer to the Freshdesk API documentation: https://developers.freshdesk.com/api/#create_contact');
             }
