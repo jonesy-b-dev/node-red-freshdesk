@@ -20,8 +20,8 @@ npm install node-red-freshdesk
 ## Warnings
 * The delete company node will permanently delete a company without warnings. This can be dangerous. Any contacts associated with the company will NOT be removed.
 
-## Whats new in v0.8.1
-* Updated README.md
+## Whats new in v0.8.2
+* Fixed 'ben'being the default value for the api key
 
 For full log of the updates please check the GitHub
 
