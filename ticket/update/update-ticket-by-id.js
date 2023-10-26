@@ -9,13 +9,12 @@ module.exports = function (RED) {
         // Retrieve configuration values from node
         this.domain = this.credentials.domain;
         this.apiKey = this.credentials.apiKey;
-        this.inputData = config.inputData; 
 
         // Define the function to call the Freshdesk API directly
         this.updateTicket = function (msg) {
             // Access the data in the msg object
-            let ticketData = msg.payload;
-            let ticketId = msg.id;
+            let ticketData = msg[config.inputData];
+            let ticketId = msg[config.ticketId];
 
             // Set up the Axios request with Basic Authentication header and config
             const authHeader = `Basic ${Buffer.from(this.apiKey + ':X').toString('base64')}`;
